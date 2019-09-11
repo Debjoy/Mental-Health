@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mental Health</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
+    <script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
+    
+</head>
+<body ng-app="chatApplication" >
+   <base href="/">
+   <div ng-controller="chatList">
+   <img class="centered" ng-class="LOADING==0?'hide':'show'" src="../images/loading.svg">
+    <div class="container-fluid " ng-class="LOADING==0?'show':'hide'" style="padding:5px 15px;background-color:#233434"><h2 style="color:white;font-family:green;margin-bottom: 0"> &nbsp;&nbsp;Mental Health&nbsp; App<img src="../images/stcet.png" height="30px" style="float:left;">
+    <button class="btn btn-outline-light menu-button" style="float:right;border:none;" onclick="bring_menu()"><i class="fas fa-hamburger" style="font-size:25px"></i></button>
+    </h2></div>
+    <div class="container-fluid row" ng-class="LOADING==0?'show':'hide'" style="width:unset" >
+    <div class="col-md-3" style="padding:0;" id="chatListArea">
+        <div class="col-sm-12" style="background-color:#344; color:white;padding:5px 15px;"><h1>Chats
+         
+         </h1>
+         <div  class="menu-items"><h3 style="margin-bottom:0px"><button onclick="showChatListArea()"  class="btn btn-light" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-list-ul"></i></button>
+        <button class="btn btn-light" onclick="showChatArea()"  style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-comment"></i></button>
+        <button class="btn btn-light" onclick="showGeneralArea()"  style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-user-cog"></i></button>
+        </h3></div>
+         
+         </div>
+          <div style="overflow:auto;height:80vh" >
+          
+           <div class="col-sm-12 chatbread" ng-repeat="list in chatlist " onclick="showChatArea()" ng-class="list.chatid==openchatid?'selected':''" ng-click="chatloader(list.chatid,list.ran,list.alias)">
+               <svg style="float:left;margin-right:15px;background-color:white;border-radius:50%;border:1px solid black" height="50px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+<g><g><g id="Layer_2_9_"><g><path d="M201.6,179.5c9.5,5.3,73.1,36.1,103.9,50.9c0.1,11.9,0.4,32.6,0.8,32.9c3.4,29.6,9.2,62.4,10.9,71.7c-2.8,1.6-17.2,11-17.2,40.2c0,0.2,0,0.3,0,0.5c0,0.8,0,1.5,0,2.3c6.2,81.3,38.5,46.2,45.2,81.8c11.1,59.2,63.5,102,96.1,116.8c18.9,8.5,38.3,12.9,58.7,13.3c20.4-0.4,39.8-4.8,58.6-13.3c32.6-14.8,85-57.6,96.1-116.8c6.7-35.6,39-0.6,45.2-81.8c0-0.8,0-1.6,0-2.3c0-0.2,0-0.3,0-0.5c0-29.2-14.4-38.6-17.2-40.2c1.7-9.3,7.5-42.1,10.9-71.7c0.4-0.4,0.7-21,0.8-32.9c16.9-8.1,43.7-21.1,66-32V277c-6.2,3.7-10.6,10.1-10.6,17.8c0,6.8,3.5,12.6,8.5,16.4c0,0-9,50.4-11.9,65.2c-2.9,14.8,51.1,11.8,48.7,0c-2.4-11.8-11.9-65.2-11.9-65.2c5-3.8,8.5-9.6,8.5-16.4c0-7.7-4.3-14.2-10.5-17.8v-88.8c8.3-4.1,14.5-7.3,17-8.7c6.7-3.8,10.3-8.6,9.5-13.6c0.9-5.2-2.9-10.8-13-15.8C722.6,114.8,538.3,24.6,520.1,15.9c-8-3.8-14.5-5.5-20.1-5.9c-5.6,0.4-12.1,2.1-20.1,5.9c-18.2,8.7-202.5,98.9-274.8,134.3c-10.1,5-13.9,10.6-13,15.8C191.4,170.9,195,175.8,201.6,179.5z" fill="{{list.ran}}" /><path fill="{{list.ran}}" d="M745.4,687.9c-34-12.3-93.2-47.6-103.4-53.1c-2.6-1.5-5.7-2.4-8.9-2.4c-7.1,0-13.2,4.2-16.1,10.2c-28,46.9-80,183.5-116.3,186c-0.2,0-0.4-0.1-0.7-0.1c-0.2,0-0.5,0.1-0.7,0.1c-36.3-2.5-88.3-139.1-116.3-186c-2.9-6-9-10.2-16.1-10.2c-3.3,0-6.3,0.9-8.9,2.4c-10.1,5.5-69.3,40.8-103.4,53.1C140.5,729,89.1,771,89.1,799.6c0,0.8,0,1.8,0,2.8c0,34.9,0,184.7,0,184.7c0,1.8,0,2.8,0,2.8h410.2h0.7h0.7h410.2c0,0,0-1,0-2.8c0,0,0-149.9,0-184.7c0-1,0-2,0-2.8C910.9,771,859.5,729,745.4,687.9z"/></g></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+</svg>
+               <h6>{{list.alias==""?list.ran:list.alias}}</h6><p class="newmessage" ng-if="list.seen==1">new <i style="font-size:20px" class="fas fa-comment-dots"></i><p><p style="float:right; font-weight:500; font-size:13px">{{list.timestamp | date: 'h:mm a'}}</p>
+               
+            </div>
+           
+          </div>  
+        </div>
+    <div class="col-md-6" style="padding:0;" ng-if="chatload" id="chatArea">
+        <div class="col-sm-12" style="background-color:#344;color:white;padding:5px 15px;">
+              
+              <svg style="float:left;margin-right:15px;background-color:white;border-radius:50%;" height="50px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+<metadata></metadata>
+<g><g><g id="Layer_2_9_"><g><path d="M201.6,179.5c9.5,5.3,73.1,36.1,103.9,50.9c0.1,11.9,0.4,32.6,0.8,32.9c3.4,29.6,9.2,62.4,10.9,71.7c-2.8,1.6-17.2,11-17.2,40.2c0,0.2,0,0.3,0,0.5c0,0.8,0,1.5,0,2.3c6.2,81.3,38.5,46.2,45.2,81.8c11.1,59.2,63.5,102,96.1,116.8c18.9,8.5,38.3,12.9,58.7,13.3c20.4-0.4,39.8-4.8,58.6-13.3c32.6-14.8,85-57.6,96.1-116.8c6.7-35.6,39-0.6,45.2-81.8c0-0.8,0-1.6,0-2.3c0-0.2,0-0.3,0-0.5c0-29.2-14.4-38.6-17.2-40.2c1.7-9.3,7.5-42.1,10.9-71.7c0.4-0.4,0.7-21,0.8-32.9c16.9-8.1,43.7-21.1,66-32V277c-6.2,3.7-10.6,10.1-10.6,17.8c0,6.8,3.5,12.6,8.5,16.4c0,0-9,50.4-11.9,65.2c-2.9,14.8,51.1,11.8,48.7,0c-2.4-11.8-11.9-65.2-11.9-65.2c5-3.8,8.5-9.6,8.5-16.4c0-7.7-4.3-14.2-10.5-17.8v-88.8c8.3-4.1,14.5-7.3,17-8.7c6.7-3.8,10.3-8.6,9.5-13.6c0.9-5.2-2.9-10.8-13-15.8C722.6,114.8,538.3,24.6,520.1,15.9c-8-3.8-14.5-5.5-20.1-5.9c-5.6,0.4-12.1,2.1-20.1,5.9c-18.2,8.7-202.5,98.9-274.8,134.3c-10.1,5-13.9,10.6-13,15.8C191.4,170.9,195,175.8,201.6,179.5z" fill="{{ran}}" /><path fill="{{ran}}" d="M745.4,687.9c-34-12.3-93.2-47.6-103.4-53.1c-2.6-1.5-5.7-2.4-8.9-2.4c-7.1,0-13.2,4.2-16.1,10.2c-28,46.9-80,183.5-116.3,186c-0.2,0-0.4-0.1-0.7-0.1c-0.2,0-0.5,0.1-0.7,0.1c-36.3-2.5-88.3-139.1-116.3-186c-2.9-6-9-10.2-16.1-10.2c-3.3,0-6.3,0.9-8.9,2.4c-10.1,5.5-69.3,40.8-103.4,53.1C140.5,729,89.1,771,89.1,799.6c0,0.8,0,1.8,0,2.8c0,34.9,0,184.7,0,184.7c0,1.8,0,2.8,0,2.8h410.2h0.7h0.7h410.2c0,0,0-1,0-2.8c0,0,0-149.9,0-184.7c0-1,0-2,0-2.8C910.9,771,859.5,729,745.4,687.9z"/></g></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+</svg>
+              
+              
+               <h4 style="padding:10px">{{(alias=="")?ran:alias}} <i data-toggle="modal" data-target="#myModalAlias" class="fas fa-pencil-alt" style="cursor:pointer"></i> &nbsp;<button class="btn btn-outline-light" ng-if="ShowReportCheckbox==1" ng-click="ReportCancel()"><i class="fas fa-times"></i></button> &nbsp;<button class="btn btn-light" ng-if="ShowReportCheckbox==1 && ULimitReport!=-1" data-toggle="modal" data-target="#reportSubmitModal">Submit </button>
+               
+               </h4>
+        </div>
+        <div  class="menu-items"><h3 style="margin-bottom:0px"><button onclick="showChatListArea()" class="btn btn-light" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-list-ul"></i></button>
+        <button onclick="showChatArea()" class="btn btn-light" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-comment"></i></button>
+        <button class="btn btn-light" onclick="showGeneralArea()" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-user-cog"></i></button>
+        </h3></div>
+        <div class="col-sm-12" style="padding:0px">
+            <div class="chatarea" set-height><button class="btn btn-outline-light" style="width:100%;color:#555" ng-if="chatloadstarted==0" ng-click="chatloadmore()"  ng-hide="loadinganime==1||alreadyloaded==1">Load More</button>
+               <img src="../images/spinner.svg" width="100%" height="38px" ng-show="loadinganime==1">
+               <div ng-class="chat.from=='T'? 'sent': 'recieved'" ng-if="chatloadstarted==0" ng-repeat="chat in chatload">
+                  <label class="checkcontainer" style="float:left;" ng-if="ULimitReport<=chat.mid && LLimitReport>=chat.mid && ShowReportCheckbox==1">
+                      <input type="checkbox" ng-model="optionReport[chat.mid]" ng-if="ULimitReport<=chat.mid && LLimitReport>=chat.mid && ShowReportCheckbox==1" ng-value="chat.mid" ng-change="toggleReport(chat.mid)">
+                      <span class="checkmark" ng-if="ULimitReport<=chat.mid && LLimitReport>=chat.mid && ShowReportCheckbox==1"></span>
+                    </label>
+                   {{chat.message}}
+               </div>
+               <img src="../test/load.svg" class="centered" ng-if="chatloadstarted==1">
+            </div>
+            
+            <div style="padding: 15px;background-color:#344">
+              
+               <form ng-submit = "sendMessage()">
+                <div class="input-group" style="margin-bottom:0;">
+                 <textarea id="typingbox" class="form-control" rows="1" enter-submit="sendMessage()" ng-model = "texting.msg"></textarea>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-light" type="submit" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button> 
+                    <!-- ng-click="sendMessage(chatload[chatload.length-1].msgno)" -->
+                  </div>
+                </div>
+                </form>
+                
+            </div>    
+        </div>
+    
+        
+    </div>
+    
+    <div class="col-md-3" style="padding:0;" id="generalArea">
+        <div class="col-sm-12" style="background-color:#344; color:white;padding:5px 15px;"><h1>General
+       
+        </h1>
+        <div  class="menu-items"><h3 style="margin-bottom:0px"><button onclick="showChatListArea()"  class="btn btn-light" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-list-ul"></i></button>
+        <button class="btn btn-light" onclick="showChatArea()"  style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-comment"></i></button>
+        <button class="btn btn-light" onclick="showGeneralArea()"  style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-user-cog"></i></button>
+        </h3></div>
+        </div>
+         
+          <div style="overflow:auto;margin: 0px 15px" >
+          <h5 style="margin-top:5px;"><strong>Details:</strong></h5>
+          <p style="font-size:13px;margin-bottom: 0">{{Teacher.name}} || {{Teacher.dept}} || {{Teacher.contact}}<button class="btn btn-outline-dark" style="float:right;"><i class="fas fa-pencil-alt"></i></button></p> 
+          <p style="font-size:13px;margin-bottom: 0">{{Teacher.email}}</p>
+           <hr>
+           <div>
+              <button class="btn btn-outline-dark" style="width:100%;text-align:left;border:none" data-toggle="modal" data-target="#reportstartModal"><i class="fas fa-flag"></i>&nbsp; Report Chat</button>
+              
+               <button class="btn btn-outline-dark" ng-click="logout()" style="width:100%;text-align:left;border:none"><i class="fas fa-sign-out-alt"></i>&nbsp; Log Out</button>
+               <hr>
+               <h5 style="margin-top:5px;"><strong>About:</strong></h5>
+               <p style="font-size:13px;">
+                   This is a web application where students can talk with a teacher with or without revealing his/ her identity. Students who wants to talk about their problems but has no one to talk to can open up here .. since the identity is not revealed, students feel more comfortable. Note: Teachers can report of bad behavior towards a teacher to the administration and the identity will be known.                  
+               </p>
+               
+               
+           </div>
+          </div>  
+        </div>
+    
+    </div>
+    
+    <div ng-class="alertMsgShow==0?'float-alert':'float-alert show-alert'">{{alertMsg}}</div>
+    <!-- MODALS -->
+    
+    
+    <div class="modal fade" id="reportSubmitModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Submit Report </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h5>The Chats have been marked</h5>
+          <h5>Enter additional Comments on the report</h5>
+          <div class="form-group">
+          
+      <textarea class="form-control" rows="5" ng-model="reportMsg" id="comment" name="text"></textarea>
+    </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal" ng-click="submitReport()">Submit</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    
+     <!-- The Modal for changing ALIAS -->
+  <div class="modal fade" id="myModalAlias">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title">Give a custom alias name for this chat. This is to avoid your confusion, so choose wisely</h6>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input type="text" class="form-control" ng-model="aliasName">
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal" ng-click="changeAliasName()">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+    <div class="modal fade" id="reportstartModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Note </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h5>This is general note</h5>
+          <p>This genereal note can be of anything any matter, life , living or dead . don't need to think of that first. what matters is the working of this project. These stuffs can be thought of later :)</p>
+          <h5>How to use this</h5>
+          <p>This part is quite important if you ask me. All you have to do is (after clicking the button below) you will have to select a range of chat (checkboxes will be avalable beside each chat. after selecting , a button will apear saying "submit report" , a dialog will apear where you will add any message and then click submit. your report will be submitted. </p>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal" onclick="showChatArea()" ng-click="ShowReportCheckbox=1">Start</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    
+    
+    </div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mental Health</title>
+    <meta name="theme-color" content="#223434">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
+    <script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
+    
+</head>
+<body ng-app="chatApplication" >
+   <base href="/">
+   <div ng-controller="chatList">
+   
+   <img class="centered" ng-class="LOADING==0?'hide':'show'" src="../images/loading.svg">
+    <div class="container-fluid " ng-class="LOADING==0?'show':'hide'" style="padding:5px 15px;background-color:#233434;"><h2 style="color:white;font-family: green;margin-bottom: 0"> &nbsp;&nbsp;Mental Health&nbsp; App<img src="../images/stcet.png" height="30px" style="float:left;">
+    <button class="btn btn-outline-light menu-button" style="float:right;border:none;" onclick="bring_menu()"><i class="fas fa-hamburger" style="font-size:25px"></i></button>
+    </h2></div>
+    <div class="container-fluid row" ng-class="LOADING==0?'show':'hide'"  style="width:unset"  >
+    <div class="col-md-3 listview"  style="padding:0;" id="chatListArea">
+        <div class="col-sm-12" style="background-color:#344; color:white;padding:5px 15px;padding-right:0px"><h1>Chats <button data-toggle="modal" data-target="#myModal" class="btn btn-light btn-sm"><i class="fas fa-plus"></i></button>
+       
+        
+        </h1>
+        <div  class="menu-items"><h3 style="margin-bottom:0px"><button onclick="showChatListArea()"  class="btn btn-light" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-list-ul"></i></button>
+        <button class="btn btn-light" onclick="showChatArea()"  style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-comment"></i></button>
+        <button class="btn btn-light" onclick="showGeneralArea()"  style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-user-cog"></i></button>
+        </h3></div>
+        </div>
+         
+          <div style="overflow:auto;height:80vh" >
+           <div class="col-sm-12 chatbread" onclick="showChatArea()" ng-repeat="list in chatlist " ng-class="list.chatid==openchatid?'selected':''" ng-click="chatloader(list.chatid,list.name)">
+               <img src="images/dp.png" height="50px" style="float:left;margin-right:15px">
+               <h6>{{list.name}}</h6><p class="newmessage" ng-if="list.seen==1" >new <i style="font-size:20px" class="fas fa-comment-dots"></i><p><p style="float:right; font-weight:500; font-size:13px">{{list.timestamp* 1000 | date:'h:mm a'}}</p>
+            </div>
+           
+          </div>  
+        </div>
+    <div class="col-md-6 chatview"  style="padding:0;" ng-if="chatload" id="chatArea">
+        <div class="col-sm-12" style="background-color:#344;color:white;padding:5px 15px;padding-right:0px">
+              <img src="images/dp.png" height="50px" style="float:left;margin-right:15px">
+               <h4 style="padding:10px">{{teachername}}
+        </h4>
+        
+        </div>
+        <div  class="menu-items"><h3 style="margin-bottom:0px"><button onclick="showChatListArea()" class="btn btn-light" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-list-ul"></i></button>
+        <button onclick="showChatArea()" class="btn btn-light" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-comment"></i></button>
+        <button class="btn btn-light" onclick="showGeneralArea()" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-user-cog"></i></button>
+        </h3></div>
+        <div class="col-sm-12" style="padding:0px">
+            <div class="chatarea" set-height>
+                
+                <button class="btn btn-outline-light" style="width:100%;color:#555;"  ng-if="chatloadstarted==0" ng-click="chatloadmore()" ng-hide="loadinganime==1||alreadyloaded==1">Load More</button>
+                <img src="../images/spinner.svg" width="100%" height="38px" ng-show="loadinganime==1">
+               <div ng-class="chat.from=='S'? 'sent': 'recieved'"  ng-if="chatloadstarted==0" ng-repeat="chat in chatload ">
+                  {{chat.message}}
+               </div>
+               <img src="../test/load.svg" class="centered" ng-if="chatloadstarted==1">
+            </div>
+            
+            <div style="padding: 15px;background-color:#344">
+              
+               <form ng-submit = "sendMessage()">
+                <div class="input-group" style="margin-bottom:0;bottom-radus:20px;">
+                
+                 <textarea class="form-control" id="typingbox" rows="1" enter-submit="sendMessage()" ng-model = "texting.msg"></textarea>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-light" type="submit" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button> 
+                    <!-- ng-click="sendMessage(chatload[chatload.length-1].msgno)" -->
+                  </div>
+                </div>
+                </form>
+                
+            </div>    
+        </div>
+    
+        
+    </div>
+    
+    <div class="col-md-3" style="padding:0;" id="generalArea" >
+        <div class="col-sm-12" style="background-color:#344; color:white;padding:5px 15px;"><h1>General
+        </h1>
+        <div  class="menu-items"><h3 style="margin-bottom:0px"><button onclick="showChatListArea()"  class="btn btn-light" style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-list-ul"></i></button>
+        <button class="btn btn-light" onclick="showChatArea()"  style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-comment"></i></button>
+        <button class="btn btn-light" onclick="showGeneralArea()"  style="padding: 13px 18px;font-size: 25px;"><i class="fas fa-user-cog"></i></button>
+        </h3></div>
+        </div>
+         
+          <div style="overflow:auto;margin: 0px 15px" >
+          <h5 style="margin-top:5px;"><strong>Details:</strong></h5>
+          <p style="font-size:13px;margin-bottom: 0">{{Student.name}} || {{Student.regno}}|| {{Student.contact}}<button class="btn btn-outline-dark" style="float:right;"><i class="fas fa-pencil-alt"></i></button></p> 
+          <p style="font-size:13px;margin-bottom: 0">{{Student.email}}</p>
+           <hr>
+           <div>
+              <button class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal" style="width:100%;text-align:left;border:none"><i class="fas fa-comment-dots"></i>&nbsp; New Chat</button>
+              
+               <button class="btn btn-outline-dark" ng-click="logout()" style="width:100%;text-align:left;border:none"><i class="fas fa-sign-out-alt"></i>&nbsp; Log Out</button>
+               <hr>
+               <h5 style="margin-top:5px;"><strong>About:</strong></h5>
+               <p style="font-size:13px;">
+                   This is a web application where students can talk with a teacher with or without revealing his/ her identity. Students who wants to talk about their problems but has no one to talk to can open up here .. since the identity is not revealed, students feel more comfortable. Note: Teachers can report of bad behavior towards a teacher to the administration and the identity will be known.                  
+               </p>
+               
+               
+           </div>
+          </div>   
+        </div>
+    
+    <div ng-class="alertMsgShow==0?'float-alert':'float-alert show-alert'">{{alertMsg}}</div>
+        <!-- MODAL--->
+        <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Create new Message</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form>
+          <div class="container row">
+          <div class="col-sm-6">
+           <select class="custom-select" ng-options="option for option in departments" 
+                ng-model="selectedDept"
+                ng-change="selectedOption()">
+        </select>
+           </div>
+            <div class="col-sm-6">
+            <select   class="custom-select" ng-options="option.name for option in teacherOptions track by option.tid"  ng-model="newmsg">
+    			
+  			</select>
+            </div>
+            <div class="col-sm-12">
+            <div class="form-group">
+  				<label for="comment">Enter your message:</label>
+  				<textarea class="form-control" rows="3" id="comment" ng-model="newmsg.msg"></textarea>
+			</div>
+            </div>
+            </div>
+		</form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal" ng-click="createChat()">Send</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+        
+        
+        
+    </div>
+    
+</div>
+</body>
+</html>

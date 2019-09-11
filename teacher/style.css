@@ -1,0 +1,229 @@
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #455; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #344; 
+}
+@font-face {
+    font-family: green;
+    src: url("../font/green.otf") format("opentype");
+}
+
+/**MOBILE FRIENDLY**/
+
+.menu-items{
+    position: absolute;
+    display:none;
+    top: 0px;
+    z-index: 500;
+    background-color: white;
+    min-height: 65px;
+    right: -200px;
+    /*padding: 12px;*/
+    color:black;
+    box-shadow: -3px 0px 4px #222;
+    /*border-radius: 35px;
+    border-right: 0px;
+    border-top-right-radius: 0;*/
+    padding-right: 25px;
+    border-bottom-right-radius: 0;
+    transition:right 0.5s;
+}
+.menu-items-show{
+    display:block;
+    right:0px;
+}
+
+/**MOBILE FRIENDLY**/
+
+
+/**
+ALERT FLOATING
+*/
+.float-alert{
+padding:12px 30px;
+position:absolute;
+ max-width:300px;
+bottom:75px;
+    text-align:center;
+color:white;
+background-color:#111;
+border-radius:20px;
+left:45%;
+opacity:.9;
+z-index:9999;
+font-size:18px;
+box-shadow:2px 0px 5px #222;
+transition: all 0.3s ease-in;
+visibility:hidden;
+opacity:0;
+}
+.show-alert{
+visibility:visible;
+opacity:1;
+}
+/*******ALERT FLOATING****/
+
+/* The container */
+.checkcontainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkcontainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius:20%;
+}
+
+/* On mouse-over, add a grey background color */
+.checkcontainer:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkcontainer input:checked ~ .checkmark {
+  background-color: #344;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkcontainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkcontainer .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+/*checkbox above */
+
+
+
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+ transform: translate(-50%, -50%);
+}
+      .show{
+   visibility:visible;
+}
+.hide{
+    visibility: hidden;
+}
+.container-fluid{
+            padding-right:0px;
+            padding-left:0px;
+        }
+        .row{
+            margin-left:0;
+            margin-right:0;
+        }
+        .chatbread{
+            /*border:1px solid black;*/
+            min-height:65px;
+            padding:5px;
+        }
+.selected{
+    background-color:#e1e1e1;
+}
+        .chatbread:hover{
+            background-color:#233434;
+            color:white;
+            cursor:pointer;
+        }
+        .newmessage{
+            color:green;
+            margin:0;
+            font-weight:500;
+            float:left;;
+        }
+
+.chatarea{
+            height: 69.6vh;
+            padding:5px;
+            overflow-y: scroll;
+    -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,0.75);
+box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,0.75);
+    background-image: url("../images/chatbackground.jpg");
+            background-repeat: repeat;
+        }
+        .recieved{
+            border-radius:10px;
+            background-color: #FFF;
+            border-bottom-left-radius: 0px;
+            width:70%;
+            float:left;
+            margin:5px;
+            padding:10px;
+            -webkit-box-shadow: 4px 5px 26px -19px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 5px 26px -19px rgba(0,0,0,0.75);
+box-shadow: 4px 5px 26px -19px rgba(0,0,0,0.75);
+        }
+        .sent{
+            border-radius:10px;
+            background-color:#344;
+            color:white;
+            border-bottom-right-radius:0px;
+            width:70%;
+            float: right;
+            margin:5px;
+            padding:10px;
+            -webkit-box-shadow: 4px 5px 26px -19px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 5px 26px -19px rgba(0,0,0,0.75);
+box-shadow: 4px 5px 26px -19px rgba(0,0,0,0.75);
+        }

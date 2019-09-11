@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body ng-app="chatLoginApp">
+   
+<style>
+    @font-face {
+    font-family: green;
+    src: url("font/green.otf") format("opentype");
+}
+    body{
+           background-image: url("images/chatbackground.jpg");
+            background-repeat: repeat;
+    }
+    .login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login-form-1{
+    padding: 5%;
+    background-color: white;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+.login-form-2{
+    padding: 5%;
+    background: #233434;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3{
+    text-align: center;
+    color: #fff;
+}
+.login-container form{
+    padding: 10%;
+    padding-top:2%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #233434;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #233434;
+    background-color: #fff;
+}
+
+
+    </style>
+
+<div class="container login-container" ng-controller="loginForms">
+           <div style="width:100%;text-align: center;"><h1 style="font-family: green;font-size:50px"><img src="images/stcet.png" style="filter: drop-shadow(0px 0px 2px #222);" height="50px" style=
+"vertical-align: unset;"> &nbsp;&nbsp;Mental Health</h1></div>
+            <div class="row">
+                <div class="col-md-6 login-form-1">
+                    <h3>Teacher Login</h3>
+                    <form ng-submit="validTeacher()">
+                       <p style="font-weight:500;color:orangered;text-align:center;"> {{errorTeach}}</p><br ng-show="errorTeach==''">
+                        <div class="form-group">
+                            <input type="email" class="form-control" ng-model="teachLogin.email" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" ng-model="teachLogin.pass" placeholder="Your Password *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 login-form-2">
+                    <h3>Student Login</h3>
+                    <form ng-submit="validStudent()">
+                        <p style="font-weight:500;color:orangered;text-align:center;"> {{errorStud}}</p><br ng-show="errorStud==''">
+                        <div class="form-group">
+                            <input type="email" class="form-control" ng-model="studLogin.email" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" ng-model="studLogin.pass" placeholder="Your Password *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
